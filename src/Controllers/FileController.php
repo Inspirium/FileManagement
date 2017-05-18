@@ -33,7 +33,7 @@ class FileController extends Controller {
     }
 
     public function updateFile(Request $request, $id) {
-        $file = File::firstOrFail($id);
+        $file = File::findOrFail($id);
         $file->title = $request->get('title');
     }
 }
