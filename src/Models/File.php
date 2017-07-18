@@ -20,7 +20,7 @@ class File extends Model {
 
     use SoftDeletes;
 
-    protected $fillable = ['title', 'location', 'link', 'type', 'owner_id'];
+    protected $guarded = [];
 
     public function owner() {
         return $this->belongsTo('Inspirium\UserManagement\Models\User');
