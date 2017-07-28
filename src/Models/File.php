@@ -23,6 +23,6 @@ class File extends Model {
     protected $guarded = [];
 
     public function owner() {
-        return $this->belongsTo('Inspirium\UserManagement\Models\User');
+        return $this->belongsTo('Inspirium\HumanResources\Models\Employee');
     }
 }
