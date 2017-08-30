@@ -49,4 +49,9 @@ class FileController extends Controller {
         $file = File::findOrFail($id);
         $file->title = $request->get('title');
     }
+
+    public function deleteFile($id) {
+    	File::destroy($id);
+    	return response()->json(['message' => 'success']);
+    }
 }

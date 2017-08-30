@@ -6,4 +6,5 @@ Route::group(['prefix' => 'api/file', 'namespace' => 'Inspirium\FileManagement\C
     Route::get('{id?}', 'FileController@getFileInfo');
     Route::post('/', 'FileController@postFile');
     Route::patch('{id}', 'FileController@updateFile');
+    Route::delete('{id}', 'FileController@deleteFile');
 });
