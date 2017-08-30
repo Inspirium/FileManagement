@@ -4,7 +4,9 @@ namespace Inspirium\FileManagement\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inspirium\FileManagement\Models\File;
+use Inspirium\HumanResources\Models\Employee;
 
 class FileController extends Controller {
 
@@ -21,14 +23,25 @@ class FileController extends Controller {
         if(!$file->isValid()) {
             return response()->json([ 'result' => 'error', 'message' => 'Invalid file upload'], 400);
         }
-        $path = public_path() . '/uploads/'; //TODO: specific folders
-        $file->move($path, $file->getClientOriginalName() );
+        $disk = $request->input('disk');
+        if (!$disk) {
+        	$disk = 'public';
+        }
+        $dir = $request->input('dir');
+        if (!$dir) {
+        	$dir = 'public';
+        }
+	    $path = $file->store(sprintf('%s/%d/%d', $dir, date('Y'), date('m') ), $disk);
+       // $file->move($path, $file->getClientOriginalName() );
+        $owner = Employee::where('user_id', \Auth::id())->first();
         $f = File::create([
             'title' => $request->get('title'),
             'location' => $path,
+            'link' => Storage::disk($disk)->url($path),
             'type' => $file->getClientMimeType(),
-            'owner_id' => \Auth::id()
         ]);
+        $f->owner()->associate($owner);
+        $f->save();
         return response()->json(['result' => 'success', 'message' => 'File succesfully uploaded', 'data' => $f]);
     }
 

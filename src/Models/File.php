@@ -22,7 +22,13 @@ class File extends Model {
 
     protected $guarded = [];
 
+    protected $with = ['owner'];
+
     public function owner() {
         return $this->belongsTo('Inspirium\HumanResources\Models\Employee');
+    }
+
+    public function propositions() {
+		return $this->morphedByMany('Inspirium\BookProposition\Models\BookProposition', 'fileable')->withPivot('type');
     }
 }
