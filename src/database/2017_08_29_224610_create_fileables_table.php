@@ -18,6 +18,7 @@ class CreateFileablesTable extends Migration
             $table->integer('fileable_id');
             $table->string('fileable_type');
             $table->string('type');
+            $table->boolean('final');
         });
     }
 
