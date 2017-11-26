@@ -33,7 +33,7 @@ class FileController extends Controller {
         }
 	    $path = $file->store(sprintf('%s/%d/%d', $dir, date('Y'), date('m') ), $disk);
        // $file->move($path, $file->getClientOriginalName() );
-        $owner = Employee::where('user_id', \Auth::id())->first();
+        $owner = \Auth::user();
         $f = File::create([
             'title' => $request->get('title'),
             'location' => $path,

@@ -15,7 +15,6 @@ class FileManagementServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__ . '/routes/api.php');
 
-        $this->loadMigrationsFrom(__DIR__.'/database');
     }
 
     /**
