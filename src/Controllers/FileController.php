@@ -6,7 +6,7 @@ use Inspirium\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inspirium\FileManagement\Models\File;
-use Inspirium\HumanResources\Models\Employee;
+use Inspirium\Models\HumanResources\Employee;
 
 class FileController extends Controller {
 

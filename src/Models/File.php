@@ -43,7 +43,7 @@ class File extends Model {
     protected $with = ['owner'];
 
     public function owner() {
-        return $this->belongsTo('Inspirium\HumanResources\Models\Employee');
+        return $this->belongsTo('Inspirium\Models\HumanResources\Employee');
     }
 
     public function propositions() {
